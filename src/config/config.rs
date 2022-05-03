@@ -11,17 +11,13 @@ pub struct ServerConfig {
 #[getset(get_mut = "pub", get = "pub", set = "pub")]
 pub struct ApplicationConfig {
     ///server name
-    server_name: "app"
+    server_name:String,
     ///debug
     debug: bool,
     ///redis地址
     redis_url: String,
     /// 数据库地址
     database_url: String,
-    /// 逻辑删除字段
-    logic_column: String,
-    logic_un_deleted: usize,
-    logic_deleted: i64,
     ///日志目录 "target/logs/"
     log_dir: String,
     /// "100MB" 日志分割尺寸-单位KB,MB,GB

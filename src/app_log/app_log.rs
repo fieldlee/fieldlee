@@ -1,15 +1,21 @@
 
-
+use fast_log::config::Config;
+use fast_log::consts::LogSize;
+use fast_log::plugin::file_split::RollingType;
+use fast_log::plugin::packer::ZipPacker;
+use crate::APPLICATION_CONTEXT;
+use crate::config::config::ApplicationConfig;
+use std::time::Duration;
 
 pub fn init_log() {
-    let cassie_config = APPLICATION_CONTEXT.get::<ApplicationConfig>();
+    let app_config = APPLICATION_CONTEXT.get::<ApplicationConfig>();
     //create log dir
-    std::fs::create_dir_all(&cassie_config.log_dir());
+    std::fs::create_dir_all(&app_config.log_dir());
     //initialize fast log
     fast_log::init(Config::new().console().file_split(
-        &cassie_config.log_dir(),
-        str_to_temp_size(&cassie_config.log_temp_size()),
-        str_to_rolling(&cassie_config.log_rolling_type()),
+        &app_config.log_dir(),
+        str_to_temp_size(&app_config.log_temp_size()),
+        str_to_rolling(&app_config.log_rolling_type()),
         ZipPacker {},
     ))
     .unwrap();
