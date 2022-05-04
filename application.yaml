@@ -9,9 +9,12 @@ server:
 #缓存介质类型,"redis"
 cache_type: "redis"
 #redis地址(cache_type为“redis”时有效)
-redis_url: "redis://127.0.0.1:6379"
+redis_url: "redis://:6OQ&KHpE7x@127.0.0.1:7001"
+redis_pool_size: 30
 #数据库地址
-database_url: "mysql://root:root@localhost:3306/rivet_admin"
+mysql_url: "mysql://root:7JJljqC1%25LS%25%25bvYeV6W@127.0.0.1:20532/teacup?charset=utf8mb4&parseTime=True&loc=UTC&time_zone=%27%2B00%3A00%27"
+mysql_max_connect: 10
+mysql_max_lifetime: 600
 #日志文件存放目录
 log_dir: "target/logs/"
 #日志分割尺寸-单位KB,MB,GB

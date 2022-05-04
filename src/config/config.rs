@@ -16,8 +16,11 @@ pub struct ApplicationConfig {
     debug: bool,
     ///redis地址
     redis_url: String,
+    redis_pool_size: usize,
     /// 数据库地址
-    database_url: String,
+    mysql_url: String,
+    mysql_max_connect: u32,
+    mysql_max_lifetime: u64,
     ///日志目录 "target/logs/"
     log_dir: String,
     /// "100MB" 日志分割尺寸-单位KB,MB,GB
@@ -54,7 +57,7 @@ impl ApplicationConfig {
         if self.redis_url.is_empty() {
             panic!("请配置redis_url")
         }
-        if self.database_url.is_empty() {
+        if self.mysql_url.is_empty() {
             panic!("请配置database_url")
         }
     }
