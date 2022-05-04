@@ -21,3 +21,5 @@ redis = { version = "0.21.5", features = ["tokio"] }
 #对象存储
 state = { version = "0.5.3", features = ["tls"] }
 getset = "0.1.2"
+# rbatis
+rbatis = { version = "3.0", default-features = false, features = ["mysql", "runtime-async-std-rustls"] }

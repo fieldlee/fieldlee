@@ -9,12 +9,14 @@ pub mod config;
 pub mod app_log;
 pub mod init;
 pub mod model;
+pub mod database;
 
 use crate::config::config::ApplicationConfig;
 use crate::init::init_config::init_config;
 use log::info;
 use state::Container;
 use crate::app_log::app_log::init_log;
+use crate::database::init_database;
 /*
 整个项目上下文ApplicationContext
 包括：
@@ -32,7 +34,7 @@ pub async fn init_context() {
     init_log();
     info!("ConfigContext init complete");
     //第二步初始化数据源
-    // init_database().await;
+    init_database().await;
     info!("DataBase init complete");
     //第三步初始化所有的 服务类
     // init_service().await;

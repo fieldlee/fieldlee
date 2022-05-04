@@ -17,7 +17,6 @@ pub type Result<T> = std::result::Result<T, Error>;
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum Error {
-    /// Default Error
     E(String),
 }
 
@@ -28,8 +27,6 @@ impl<T> std::convert::From<PoisonError<T>> for Error {
 }
 
 impl Display for Error {
-    // IntellijRust does not understand that [non_exhaustive] applies only for downstream crates
-    // noinspection RsMatchCheck
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Error::E(error) => write!(f, "{}", error),
@@ -46,11 +43,11 @@ impl From<io::Error> for Error {
     }
 }
 
-// impl From<&str> for Error {
-//     fn from(arg: &str) -> Self {
-//         return Error::E(arg.to_string());
-//     }
-// }
+impl From<&'static str> for Error {
+    fn from(arg: &str) -> Self {
+        return Error::E(arg.to_string());
+    }
+}
 
 impl From<std::string::String> for Error {
     fn from(arg: String) -> Self {
@@ -58,17 +55,17 @@ impl From<std::string::String> for Error {
     }
 }
 
-// impl From<&dyn std::error::Error> for Error {
-//     fn from(arg: &dyn std::error::Error) -> Self {
-//         return Error::E(arg.to_string());
-//     }
-// }
+impl From<&dyn std::error::Error> for Error {
+    fn from(arg: &dyn std::error::Error) -> Self {
+        return Error::E(arg.to_string());
+    }
+}
 
-// impl From<rbatis::core::Error> for Error {
-//     fn from(arg: rbatis::core::Error) -> Self {
-//         Error::E(arg.to_string())
-//     }
-// }
+impl From<rbatis::core::Error> for Error {
+    fn from(arg: rbatis::core::Error) -> Self {
+        Error::E(arg.to_string())
+    }
+}
 
 impl From<Error> for std::io::Error {
     fn from(arg: Error) -> Self {
