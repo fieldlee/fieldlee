@@ -22,4 +22,7 @@ redis = { version = "0.21.5", features = ["tokio"] }
 state = { version = "0.5.3", features = ["tls"] }
 getset = "0.1.2"
 # rbatis
+rbson = "2.0"
 rbatis = { version = "3.0", default-features = false, features = ["mysql", "runtime-async-std-rustls"] }
+validator = "0.15.0"
+validator_derive = "0.15.0"

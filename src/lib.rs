@@ -4,15 +4,16 @@
 
 #[macro_use]
 extern crate getset;
+#[macro_use]
+extern crate rbatis;
 
 pub mod config;
 pub mod app_log;
-pub mod init;
 pub mod model;
 pub mod database;
 
 use crate::config::config::ApplicationConfig;
-use crate::init::init_config::init_config;
+use crate::config::init_config;
 use log::info;
 use state::Container;
 use crate::app_log::app_log::init_log;

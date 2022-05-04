@@ -33,7 +33,6 @@ async fn main() {
         //         .layer(layer_fn(|inner| EventMiddleware { inner })) //第二执行的
         //         .layer(extractor_middleware::<auth_admin::Auth>()), //最先执行的
         // )
-        // .nest("/api", api::routers().layer(extractor_middleware::<auth_api::Auth>()))
         .layer(cors)
         .fallback(fallback.into_service());
     // 启动服务
